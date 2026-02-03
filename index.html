@@ -5,7 +5,7 @@
 <title>Happy Birthday My Love JO ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Luxury Fonts -->
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
@@ -14,38 +14,49 @@ body {
   height: 100vh;
   background: radial-gradient(circle at top, #5a0000, #120000);
   font-family: 'Poppins', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
   color: #f5e6e6;
 }
 
+/* Pages */
+.page {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.2s ease;
+}
+.page.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Card */
 .card {
-  background: linear-gradient(145deg, rgba(120,0,0,0.85), rgba(40,0,0,0.9));
+  background: linear-gradient(145deg, rgba(120,0,0,0.88), rgba(40,0,0,0.95));
   border-radius: 28px;
-  padding: 35px 28px;
+  padding: 36px 28px;
   width: 92%;
   max-width: 440px;
   text-align: center;
   box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-  animation: fadeIn 2s ease;
-  position: relative;
+  animation: scaleIn 1.5s ease;
 }
 
+/* Text */
 h1 {
   font-family: 'Playfair Display', serif;
-  font-size: 2.7rem;
-  margin-bottom: 8px;
+  font-size: 2.6rem;
+  margin-bottom: 10px;
   color: #ffd6d6;
 }
-
 h2 {
   font-weight: 300;
   margin-bottom: 18px;
-  letter-spacing: 1px;
 }
-
 p {
   font-size: 1rem;
   line-height: 1.75;
@@ -59,24 +70,30 @@ p {
   margin: 18px auto;
 }
 
-footer {
-  font-size: 0.85rem;
-  margin-top: 15px;
-  opacity: 0.85;
+/* Buttons */
+.btn {
+  background: linear-gradient(145deg, #b30000, #5a0000);
+  border: none;
+  color: #fff;
+  padding: 11px 26px;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-top: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
 }
 
-/* Floating Hearts */
+/* Floating hearts */
 .heart {
   position: absolute;
   bottom: -60px;
   font-size: 22px;
-  animation: floatUp 9s linear infinite;
+  animation: floatUp 10s linear infinite;
   opacity: 0.7;
 }
 .heart:nth-child(1){left:15%; animation-delay:0s}
-.heart:nth-child(2){left:35%; animation-delay:2s}
-.heart:nth-child(3){left:55%; animation-delay:4s}
-.heart:nth-child(4){left:75%; animation-delay:1s}
+.heart:nth-child(2){left:35%; animation-delay:3s}
+.heart:nth-child(3){left:55%; animation-delay:6s}
+.heart:nth-child(4){left:75%; animation-delay:2s}
 
 /* Rose petals */
 .petal {
@@ -89,102 +106,113 @@ footer {
 
 /* Candle */
 #candle {
-  font-size: 40px;
+  font-size: 42px;
   cursor: pointer;
-  margin-top: 10px;
   animation: flicker 1s infinite;
 }
-
 #wish {
   margin-top: 10px;
   font-style: italic;
-  color: #ffdada;
-}
-
-/* Music button */
-.music-btn {
-  background: linear-gradient(145deg, #b30000, #5a0000);
-  border: none;
-  color: #fff;
-  padding: 10px 22px;
-  border-radius: 25px;
-  cursor: pointer;
-  margin-top: 18px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
 }
 
 /* Animations */
 @keyframes floatUp {
-  0% {transform: translateY(0);}
-  100% {transform: translateY(-120vh);}
+  to { transform: translateY(-120vh); }
 }
-
 @keyframes fall {
-  0% {transform: translateY(0) rotate(0deg);}
-  100% {transform: translateY(120vh) rotate(360deg);}
+  to { transform: translateY(120vh) rotate(360deg); }
 }
-
-@keyframes fadeIn {
-  from {opacity:0; transform:scale(0.9);}
-  to {opacity:1; transform:scale(1);}
+@keyframes scaleIn {
+  from { opacity:0; transform:scale(0.85); }
+  to { opacity:1; transform:scale(1); }
 }
-
 @keyframes flicker {
-  0% {opacity:1}
-  50% {opacity:0.7}
-  100% {opacity:1}
+  0%,100%{opacity:1}
+  50%{opacity:0.7}
 }
 </style>
 </head>
 
 <body>
 
-<!-- Floating hearts -->
+<!-- floating hearts -->
 <div class="heart">❤️</div>
 <div class="heart">💖</div>
 <div class="heart">❤️</div>
 <div class="heart">💗</div>
 
-<div class="card">
-  <h1>Happy Birthday</h1>
-  <h2>My Love JO <span id="name">❤️</span></h2>
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+  <div class="card">
+    <h1>Happy Birthday</h1>
+    <h2>My Love JO <span id="name">❤️</span></h2>
+    <div class="gold-line"></div>
+    <p>
+      Today isn’t just your birthday.  
+      It’s the day the world became more beautiful.
+    </p>
+    <button class="btn" onclick="nextPage(2)">Continue 💕</button>
+  </div>
+</div>
 
-  <div class="gold-line"></div>
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+  <div class="card">
+    <h1>My Heart</h1>
+    <div class="gold-line"></div>
+    <p>
+      Loving you feels like luxury —  
+      rare, deep, and endlessly precious.
+    </p>
+    <p id="typing"></p>
+    <button class="btn" onclick="nextPage(3)">Next ❤️</button>
+  </div>
+</div>
 
-  <p>
-    Every moment with you feels like luxury —  
-    rare, beautiful, and deeply unforgettable.
-  </p>
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+  <div class="card">
+    <h1>A Wish</h1>
+    <div class="gold-line"></div>
+    <p>
+      Close your eyes and make a wish…  
+      I’m already part of it 😉
+    </p>
+    <div id="candle" onclick="blow()">🕯️</div>
+    <p id="wish"></p>
+    <button class="btn" onclick="nextPage(4)">Finale ✨</button>
+  </div>
+</div>
 
-  <p>
-    You are my calm in chaos,  
-    my favorite thought,  
-    and my forever choice.
-  </p>
-
-  <p id="typing"></p>
-
-  <div id="candle" onclick="blow()">🕯️</div>
-  <p id="wish"></p>
-
-  <button class="music-btn" onclick="playMusic()">▶ Play our song</button>
-
-  <footer>
-    Forever yours, always ❤️
-	
-	KP
-	
-  </footer>
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+  <div class="card">
+    <h1>Forever</h1>
+    <div class="gold-line"></div>
+    <p>
+      I choose you — today, tomorrow,  
+      and in every lifetime ❤️
+    </p>
+    <p style="font-style:italic;">
+      Happy Birthday, my forever love.
+    </p>
+  </div>
 </div>
 
 <script>
 // Name from URL
-const params = new URLSearchParams(window.location.search);
+const params = new URLSearchParams(location.search);
 const name = params.get("name");
-if (name) document.getElementById("name").textContent = name;
+if(name) document.getElementById("name").textContent = name;
 
-// Typing text
-const text = "I fall in love with you a little more every single day ❤️";
+// Page navigation
+function nextPage(n){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById("page"+n).classList.add("active");
+}
+
+// Typing effect
+const text = "I fall in love with you more every single day ❤️";
 let i = 0;
 function type(){
   if(i < text.length){
@@ -199,26 +227,20 @@ type();
 function blow(){
   document.getElementById("candle").textContent = "💨";
   document.getElementById("wish").textContent =
-    "Your wish is my responsibility now 💕";
+    "Your wish is now my promise 💕";
 }
 
-// Music (optional – add song.mp3)
-const music = new Audio("song.mp3");
-function playMusic(){
-  music.play();
-}
-
-// Rose petals
+// Petals
 const petals = ["🌹","🌸","💮"];
-setInterval(() => {
+setInterval(()=>{
   const p = document.createElement("div");
-  p.className = "petal";
+  p.className="petal";
   p.textContent = petals[Math.floor(Math.random()*petals.length)];
-  p.style.left = Math.random()*window.innerWidth+"px";
+  p.style.left = Math.random()*innerWidth+"px";
   p.style.animationDuration = (6+Math.random()*6)+"s";
   document.body.appendChild(p);
   setTimeout(()=>p.remove(),12000);
-},700);
+},800);
 </script>
 
 </body>
